@@ -63,3 +63,5 @@ C:\Users\Jordan Warzecha\Repository\NewsTweet\obj\Debug\Views\MainView.baml
 C:\Users\Jordan Warzecha\Repository\NewsTweet\obj\Debug\NewsTweet.g.resources
 C:\Users\Jordan Warzecha\Repository\NewsTweet\obj\Debug\NewsTweet.Properties.Resources.resources
 C:\Users\Jordan Warzecha\Repository\NewsTweet\obj\Debug\NewsTweet.csproj.GenerateResource.Cache
+C:\Users\Jordan Warzecha\Repository\NewsTweet\obj\Debug\Views\FeedsView.baml
+C:\Users\Jordan Warzecha\Repository\NewsTweet\obj\Debug\Views\FeedsView.g.cs

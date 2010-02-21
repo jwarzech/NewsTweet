@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FeedsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +95,9 @@
     <Compile Include="ViewModels\FeedsViewModel.cs" />
     <Compile Include="ViewModels\TweetViewModel.cs" />
     <Compile Include="ViewModels\HeadlineViewModel.cs" />
+    <Compile Include="Views\FeedsView.xaml.cs">
+      <DependentUpon>FeedsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>

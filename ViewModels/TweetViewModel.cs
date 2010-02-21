@@ -16,6 +16,22 @@ namespace NewsTweet.ViewModels
         #region Access Properties
 
         /// <summary>
+        /// The author of the tweet
+        /// </summary>
+        public string Author
+        {
+            get { return _tweet.Author; }
+            set
+            {
+                if (_tweet.Author == value)
+                    return;
+
+                _tweet.Author = value;
+                OnPropertyChanged("Author");
+            }
+        }
+
+        /// <summary>
         /// The content of the tweet
         /// </summary>
         public string Title

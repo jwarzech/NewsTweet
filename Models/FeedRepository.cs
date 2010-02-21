@@ -93,16 +93,16 @@ namespace NewsTweet.Models
             var list = (from entry in document.Descendants(ATOM_NAMESPACE + "entry")
                         select new Tweet
                         {
-                            ID = (string)entry.Element(ATOM_NAMESPACE + "id"),
-                            Title = (string)entry.Element(ATOM_NAMESPACE + "title"),
-                            Image = (string)entry.Element(ATOM_NAMESPACE + "link").Attribute(ATOM_NAMESPACE + "href")
-                            //Author = (string)entry.Descendants("author").Element("name")
+                            ID = entry.Element(ATOM_NAMESPACE + "id").Value,
+                            Title = entry.Element(ATOM_NAMESPACE + "title").Value,
+                            Author = entry.Element(ATOM_NAMESPACE + "author").Element(ATOM_NAMESPACE + "name").Value.Split(' ')[0],
+                            Image = (from i in entry.Elements(ATOM_NAMESPACE + "link")
+                                     where i.Attribute("type").Value == "image/png"
+                                     select i).Single().Attribute("href").Value
                         });
 
             return list.ToList<Tweet>();
         }
-
-        
 
         #endregion // Public Methods
     }
