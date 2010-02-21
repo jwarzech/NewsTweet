@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<feeds>
+	<feed>
+		<name>CNN Top Stories</name>
+		<uri>http://rss.cnn.com/rss/edition.rss</uri>
+	</feed>
+</feeds>

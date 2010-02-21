@@ -1,0 +1,128 @@
+﻿<Window x:Class="NewsTweet.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:NewsTweet.Commands"
+    Title="Main Window" Height="768" Width="1024">
+    
+    <Window.Resources>
+		<Style TargetType="Label">
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="10,0" />
+		</Style>
+		
+		<Style TargetType="TextBox">
+			<Setter Property="Height" Value="25" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="10,0" />
+		</Style>
+		
+		<Style x:Key="HeadlineList" TargetType="ItemsControl">
+			
+		</Style>
+		
+		<Style x:Key="HeadlineTitle" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="Margin" Value="5,10" />
+		</Style>
+		
+		<Style x:Key="TweetList" TargetType="ItemsControl">
+        	<Setter Property="ItemsPanel">
+          		<Setter.Value>
+            		<ItemsPanelTemplate>
+              			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            		</ItemsPanelTemplate>
+          		</Setter.Value>
+        	</Setter>
+      	</Style>
+		
+		<Style x:Key="TweetPicture" TargetType="Image">
+			<Setter Property="Width" Value="48" />
+			<Setter Property="Height" Value="48" />
+			<Setter Property="Margin" Value="5" />
+		</Style>
+		
+		<Style x:Key="TweetTitle" TargetType="TextBlock">
+			<Setter Property="Width" Value="300" />
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="Margin" Value="0,5" />
+		</Style>
+	
+    </Window.Resources>
+
+    <DockPanel>
+    <!--	<DockPanel.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="White" Offset="0"/>
+    			<GradientStop Color="Gray" Offset="1"/>
+    		</LinearGradientBrush>
+    	</DockPanel.Background> -->
+		
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Stretch" MinHeight="40">
+			<StackPanel.Background>
+				<LinearGradientBrush EndPoint="0.973,0.767" StartPoint="0.022,0.553">
+					<GradientStop Color="#FF88CCEE" Offset="0.783"/>
+					<GradientStop Color="#FFADE1F9" Offset="1"/>
+				</LinearGradientBrush>
+			</StackPanel.Background>
+			<Label Content="Feed URL:" />
+			<TextBox Text="{Binding URI}" Width="300" />
+			<Button Content="Refresh" Command="{Binding RefreshCommand, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="80" Height="25" />
+		</StackPanel>
+		
+		<!-- List of Feeds -->
+		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+			<ItemsControl 	x:Name="lstFeeds" 
+							DockPanel.Dock="Left"
+				 			ItemsSource="{Binding Feeds}"
+				 			>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Label Content="{Binding Name}" />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+		
+		<!-- List of Headlines -->
+		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+			<ItemsControl 	x:Name="lsHeadlines" 
+							DockPanel.Dock="Top"
+				 			ItemsSource="{Binding Headlines}"
+				 			Style="{StaticResource HeadlineList}">
+				<ItemsControl.Background>
+					<LinearGradientBrush EndPoint="0.011,-0.075" StartPoint="0.985,0.98">
+						<GradientStop Color="#FF12334D"/>
+						<GradientStop Color="#FF2277BB" Offset="1"/>
+					</LinearGradientBrush>
+				</ItemsControl.Background>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<!-- Headline Item -->
+						<StackPanel>
+							<!-- Title -->
+							<TextBlock Text="{Binding Title}" Style="{StaticResource HeadlineTitle}" />
+							<!-- List of Related Tweets -->
+							<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+								<ItemsControl 	ItemsSource="{Binding Tweets}" 
+								 				Style="{StaticResource TweetList}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<!-- Tweet -->
+											<StackPanel Orientation="Horizontal" Width="400" Height="70">
+												<Image Source="{Binding Image}" Style="{StaticResource TweetPicture}" />
+												<TextBlock Text="{Binding Title}" Style="{StaticResource TweetTitle}" />
+											</StackPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</ScrollViewer>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+    </DockPanel>
+</Window>
